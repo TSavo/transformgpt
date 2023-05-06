@@ -5,19 +5,7 @@ from typing import List, Optional
 import unittest
 import openai
 import os
-import sys
-
-# Get the path to the directory one level up from the current directory
-parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-
-# Add the parent directory to the system path
-sys.path.append(parent_dir)
 from transformgpt import TransformGPT
-# Get the path to the directory one level up from the current directory
-parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-
-# Add the parent directory to the system path
-sys.path.append(parent_dir)
 
 
 openai.api_key = os.getenv("OpenAIAPI-Token")

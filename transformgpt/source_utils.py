@@ -73,7 +73,10 @@ def from_yaml(yaml_str: str, cls: Type[DataType]) -> Union[DataType, List[DataTy
                         result.append(_from_yaml(item, type_hints[key].__args__[0]))
                     kwargs[key] = result
                 elif isinstance(value, dict):
-                    kwargs[key] = _from_yaml(value, type_hints[key].__args__[1])
+                    try:
+                        kwargs[key] = _from_yaml(value, type_hints[key].__args__[1])
+                    except:
+                        kwargs[key] = value
                 else:
                     kwargs[key] = value
             return cls(**kwargs)

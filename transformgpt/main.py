@@ -2,7 +2,7 @@ import argparse
 import os
 import sys
 import openai
-from transformgpt import TransformGPT, DataType
+from transformgpt.transformgpt import TransformGPT, DataType
 
 def main():
     parser = argparse.ArgumentParser(description='Transform input string to YAML gives a description of the desired output.')

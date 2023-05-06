@@ -1,6 +1,58 @@
+# TransformGPT
+
 TransformGPT is a python library for interpreting unstructured (or structured) data into Python objects using ChatGPT. Given a Python class hierarchy, it can take arbitrary data and structure in into the class hierarchy as a series of objects. This is useful for convertung natural language into structured data, or for converting one data type into another without specifying the mapping schema.
 
-For example:
+## Installation:
+
+```
+pip install transformgpt
+```
+
+### Optional:
+Set an environment variable called ```OpenAIAPI-Token``` to your OpenAI API token.
+
+## Command line:
+```
+usage: transformgpt [-h]
+                    [-k KEY]
+                    [-m MODEL]
+                    [-t TEMPERATURE]
+                    description
+```
+
+KEY: OpenAI API Token if it's not set as an environment variable.
+MMDEL: OpenAI Model, defaults to 'gpt-3.5-turbo'
+TEMPERATURE: Temperature for the ChatCompletion, defaults to 0, increase towards 1 to make the answers more creative
+Description: A description of how you want the data to be transformed.
+
+Takes input from STDIN and returns on STDOUT the transformed data.
+
+### Example:
+```
+> echo "Hello World.\nHow are you today?\nI am fine.\nIf you don't respond I will blackmail you." | transformgpt "An object with the fields original_message, intent, and response, where intent is one of greeting, inquiry, response, threat, informative."    
+```
+
+#### Yields:
+```yaml
+- original_message: "Hello World."
+  intent: greeting
+  response: "Hi there!"
+
+- original_message: "How are you today?"
+  intent: inquiry
+  response: "I'm doing well, thank you. How about 
+you?"
+
+- original_message: "I am fine."
+  intent: response
+  response: "Glad to hear that!"
+
+- original_message: "If you don't respond I will blackmail you."
+  intent: threat
+  response: "I'm sorry, I didn't mean to ignore you. Is there something you need help with?"
+```
+
+### Python usage:
 
 ```python
 import transformgpt
@@ -20,10 +72,12 @@ incoming_message = "The message is tell Joey Tracy is cheating on him with maid.
 print(transformer.transform_string(incoming_message, Message))
 ```
 
-Yields:
+#### Yields:
 ```
 Message(message="Tell Joey Tracy is cheating on him with the maid.", data={"Orange": "The new black.", "The only way to get the job done": "Do it yourself."})
 ```
+
+### Datalasses/Nested Structures
 
 It handles @dataclasses, and nested class hierarcharies as well:
 
@@ -64,7 +118,7 @@ incoming_message = "The message is tell Joey Tracy is cheating on him with maid.
 print(yaml.dump(transformer.transform_string(incoming_message, MessageClassification)))
 ```
 
-Yields:
+#### Yields:
 
 ```
 - !!python/object:__main__.MessageClassification
@@ -115,5 +169,11 @@ Yields:
   original_message: The message is tell Joey Tracy is cheating on him with maid.
   parameters: []
   reply: null
-  ```
+```
 
+### It also supports transforming one object into another:
+
+```python
+
+result = transformer.transform_object(myListOfObjects, MyDataTypeToTransformInto) #Returns a list[MyDataTypeToTransformInto]
+```

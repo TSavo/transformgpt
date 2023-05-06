@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Generator, List, Optional, Type
 import yaml
-from source_utils import DataType, deserialize, get_source
+from transformgpt.source_utils import DataType, deserialize, get_source
 default_model = "gpt-3.5-turbo"
 
 #define a type alias for a callable that takes a list of dictionaries and returns a string

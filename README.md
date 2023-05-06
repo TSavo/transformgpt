@@ -21,8 +21,11 @@ usage: transformgpt [-h]
 ```
 
 KEY: OpenAI API Token if it's not set as an environment variable.
-MMDEL: OpenAI Model, defaults to 'gpt-3.5-turbo'
+
+MODEL: OpenAI Model, defaults to 'gpt-3.5-turbo'
+
 TEMPERATURE: Temperature for the ChatCompletion, defaults to 0, increase towards 1 to make the answers more creative
+
 Description: A description of how you want the data to be transformed.
 
 Takes input from STDIN and returns on STDOUT the transformed data.

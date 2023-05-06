@@ -24,10 +24,8 @@ setup(
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'Intended Audience :: Information Technology',
-        'I'
         'Natural Language :: English',
         'Environment :: Console',
-        'Environment :: Libraries :: Python Modules',
         'Operating System :: OS Independent',
         'Topic :: Text Processing :: Linguistic',
         'Topic :: Text Processing :: General',
@@ -40,10 +38,9 @@ setup(
         'Topic :: Scientific/Engineering :: Interface Engine/Protocol Translator',
         'Topic :: Text Processing :: General',
         'Topic :: Text Processing :: Linguistic',
-        'Topic :: Text Processing :: Utilities',
         'License :: Freely Distributable',
         'License :: OSI Approved',
-        'License :: OSI Approved :: MIT License'
+        'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',

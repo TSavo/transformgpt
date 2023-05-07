@@ -1,5 +1,5 @@
 from setuptools import setup
-VERSION='0.1.2'
+VERSION='0.1.3'
 setup(
     name='transformgpt',
     version=VERSION,
@@ -16,9 +16,11 @@ setup(
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     install_requires=['openai>=0.27.6'],
-    scripts=['transformgpt/main.py'],
+    scripts=['transformgpt/transform_main.py',
+             'transformgpt/classify_main.py'],
     entry_points={
-        'console_scripts': ['transformgpt=transformgpt.main:main'],
+        'console_scripts': ['transformgpt=transformgpt.transform_main:main',
+                            'classifygpt=transformgpt.classify_main:main'],
     },
     classifiers=[
         'Development Status :: 5 - Production/Stable',

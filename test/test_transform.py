@@ -5,6 +5,10 @@ from typing import List, Optional
 import unittest
 import openai
 import os
+import sys
+# add .. to the path so we can import transformgpt
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
 from transformgpt import TransformGPT
 
 

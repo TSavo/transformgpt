@@ -15,7 +15,7 @@ def main():
     # Read input from stdin
     message = sys.stdin.read()
 
-    openai.api_key = args.key if args.key else os.getenv("OpenAIAPI-Token")
+    openai.api_key = args.key if args.key else os.getenv("OpenAIAPI")
     transformer = TransformGPT(openai.ChatCompletion)
     categories = args.categories.split(",")
     categories = [category.strip() for category in categories]

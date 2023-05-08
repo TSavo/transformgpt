@@ -12,7 +12,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from transformgpt import TransformGPT
 
 
-openai.api_key = os.getenv("OpenAIAPI-Token")
+openai.api_key = os.getenv("OpenAIAPI")
 transformer = TransformGPT(openai.ChatCompletion)
 
 

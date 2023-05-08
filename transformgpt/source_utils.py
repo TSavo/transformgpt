@@ -3,7 +3,7 @@ import dataclasses
 from typing import Optional, Type, Any, Set, List, Dict, Tuple, ForwardRef, Union, TypeVar, get_type_hints
 import typing
 import yaml
-
+NoneType = type(None)
 DataType = TypeVar('DataType')
 
 def unwrap_type(t: Type) -> Type:
@@ -31,7 +31,7 @@ def get_dependent_classes(t: Type, seen: Optional[Set[Type]] = None) -> Set[Type
         seen = set()
 
     t = unwrap_type(t)
-    if t in [None, True, False, int, float, str, bytes, bytearray]:
+    if t in [None, NoneType, True, False, int, float, str, bytes, bytearray]:
         return set()
     if t in seen:
         return set()
@@ -43,7 +43,7 @@ def get_dependent_classes(t: Type, seen: Optional[Set[Type]] = None) -> Set[Type
     elif hasattr(t, "__args__"):
         seen.remove(t)
         return set.union(seen, *[get_dependent_classes(arg, seen) for arg in t.__args__])
-    elif t in [None, True, False, bool, int, float, str, bytes, bytearray, list, dict, tuple, set, frozenset]:
+    elif t in [None, NoneType, True, False, bool, int, float, str, bytes, bytearray, list, dict, tuple, set, frozenset]:
         seen.remove(t)
         return set()
     else:
